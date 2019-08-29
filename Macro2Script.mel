@@ -1,0 +1,104 @@
+{
+    string $obj[];
+    string $objects[];
+    float $torusDecimal = .25;
+    doGroup 0 1 1;
+$obj = `polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+$objects[size($objects)] = $obj [0];
+
+$obj = `polySphere -r .8 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+move 0 1.25 0;
+$objects[size($objects)] = $obj [0];
+
+$obj = `polySphere -r .6 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+move 0 2.3 0;
+$objects[size($objects)] = $obj [0];
+
+rename pSphere1 "Snowman_Butt";
+rename pSphere2 "Snowman_Belly";
+rename pSphere3 "Snowman_Head";
+select -r Snowman_Butt Snowman_Belly Snowman_Head ;
+doGroup 0 1 1;
+rename group1 "Snowman";
+parent Snowman_Butt Snowman_Belly ;
+parent Snowman_Belly Snowman_Head ;
+group Snowman null1;
+
+$obj = `polyCylinder -r 1 -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1`;
+rotate 78 -5 1;
+move -.2 2.5 0.47;
+scale 0.076 0.076 0.076;
+$objects[size($objects)] = $obj [0];
+
+$obj = `polyCylinder -r 1 -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1`;
+rotate 78 -5 1;
+move 0.2 2.5 0.47;
+scale 0.076 0.076 0.076;
+$objects[size($objects)] = $obj [0];
+
+$obj = `polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1`;
+rotate 0 21 24;
+move .22 2.68 0.4;
+scale 0.22 0.043 0.1;
+$objects[size($objects)] = $obj [0];
+
+$obj = `polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1`;
+rotate -18.66 -16.285 -23.03;
+move -0.185 2.65 0.424;
+scale 0.22 0.043 0.1;
+$objects[size($objects)] = $obj [0];
+
+$obj = `polyTorus -r 1 -sr $torusDecimal -tw 0 -sx 20 -sy 20 -ax 0 1 0 -cuv 1 -ch 1`;
+move  0 2.2 0.56;
+rotate 95 0 0;
+scale 0.156 0.156 0.156;
+$objects[size($objects)] = $obj [0];
+
+rename pCylinder2 "Right_Eye";
+rename pCylinder1 "Left_Eye";
+rename pCube1 "Left_Eyebrow";
+rename pCube2 "Right_Eyebrow";
+rename pTorus1 "Mouth";
+parent Left_Eye Snowman_Head;
+parent Right_Eye Snowman_Head;
+parent Left_Eyebrow Snowman_Head;
+parent Right_Eyebrow Snowman_Head;
+parent Mouth Snowman_Head;
+
+duplicate "Snowman";
+select -r Snowman1 ;
+move -r 1 0 3;
+rotate -r 85deg 0 -153deg;
+
+$obj = `polyCylinder -r 1 -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1`;
+move 1.304 1.69 0.13;
+rotate 11 0 -78;
+scale 0.1 0.7 0.095;
+$objects[size($objects)] = $obj [0];
+
+print ($objects);
+
+rename pCylinder1 "arm";
+parent arm Snowman;
+polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move 2.018 1.939 .383;
+rotate 45.65 0 0;
+scale 0.067 0.447 0.13;
+rename pCube1 "Knife";
+parent Knife arm;
+select -r Knife.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 2.018 -pvy 2.095235346 -pvz 0.5428210458 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 Knife.f[1];
+setAttr "polyExtrudeFace1.localTranslate" -type double3 0 0 0.155528 ;
+setAttr "polyExtrudeFace1.localScale" -type double3 1 1.432676 1 ;
+select -r Knife.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 2.017999808 -pvy 2.203955702 -pvz 0.6540363367 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 Knife.f[1];
+setAttr "polyExtrudeFace2.localTranslate" -type double3 0 0 0.201638 ;
+setAttr "polyExtrudeFace2.localTranslate" -type double3 0 -0.0634805 0.201638 ;
+setAttr "polyExtrudeFace2.localScale" -type double3 1 0.0277647 1 ;
+setAttr "polyExtrudeFace2.localTranslate" -type double3 0 0 0.276649 ;
+
+}
+
+
+
+
