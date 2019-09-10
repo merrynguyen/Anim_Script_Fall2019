@@ -1,155 +1,27 @@
 {
+   float $minAmount = -10;
+   float $maxAmount = 10;
+   float $objAmount = 6;
+   string $sels[]= `ls -sl -o`;
+   float $distanceX = `rand $minAmount $maxAmount`;
+   float $distanceY = `rand $minAmount $maxAmount`;
+   float $distanceZ = `rand $minAmount $maxAmount`;
+   
+
+      
+    if (size($sels) > 0){
+    print ("You Have "+ size($sels) + " objects selected");
     
-string $step[];
-string $objects[];
-float $radius = .20;
-int $height = 4;
-float $move = .2;
-float $up = .5;
-float $sideWidth =.4;
-float $sideHeight =18.4;
+    for( $i=0; $i<$objAmount; ++$i ){
+    $distanceX = `rand $minAmount $maxAmount`;
+    $distanceY = `rand $minAmount $maxAmount`;
+    $distanceZ = `rand $minAmount $maxAmount`;
+    duplicate $sels;
+    xform -translation $distanceX $distanceY $distanceZ $sels;}
+    
+    
+     }
+     }
 
 
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-
-polySelect -r ($step[0] + ".f[8]");
-polyExtrudeFacet -keepFacesTogether false ($step[0] + ".f[8]");
-setAttr "polyExtrudeFace1.localTranslate" -type double3 0 0 $sideWidth ;
-
-polySelect -r ($step[0] + ".f[11]");
-polyExtrudeFacet -keepFacesTogether false ($step[0] + ".f[11]");
-setAttr "polyExtrudeFace2.localTranslate" -type double3 0 0 $sideHeight ;
-
-polySelect -r ($step[0] + ".f[7]");
-polyExtrudeFacet -keepFacesTogether false ($step[0] + ".f[7]");
-setAttr "polyExtrudeFace3.localTranslate" -type double3 0 0 $sideWidth ;
-
-polySelect -r ($step[0] + ".f[24]");
-polyExtrudeFacet -keepFacesTogether false ($step[0] + ".f[24]");
-setAttr "polyExtrudeFace4.localTranslate" -type double3 0 0 $sideHeight ;
-
-
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-polySelect -r ($step[0] + ".f[8]");
-polyExtrudeFacet -keepFacesTogether false ($step[0] + ".f[8]");
-setAttr "polyExtrudeFace1.localTranslate" -type double3 0 0 $sideWidth ;
-
-polySelect -r ($step[0] + ".f[11]");
-polyExtrudeFacet -keepFacesTogether false ($step[0] + ".f[11]");
-setAttr "polyExtrudeFace2.localTranslate" -type double3 0 0 $sideHeight ;
-
-polySelect -r ($step[0] + ".f[7]");
-polyExtrudeFacet -keepFacesTogether false ($step[0] + ".f[7]");
-setAttr "polyExtrudeFace3.localTranslate" -type double3 0 0 $sideWidth ;
-
-polySelect -r ($step[0] + ".f[24]");
-polyExtrudeFacet -keepFacesTogether false ($step[0] + ".f[24]");
-setAttr "polyExtrudeFace4.localTranslate" -type double3 0 0 $sideHeight ;
-
-
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-
-$step = `polyCylinder -radius $radius -height $height -axis 1 0 0 -subdivisionsAxis 7`;
-move -absolute -worldSpace 0 ($move*2) 0 $step[0];
-$move += $up; 
-$objects[size($objects)] = $step [0];
-print (`xform -q -translation $objects[size($objects) - 1]`);
-
-//$sideHeight = (`xform -q -translation $objects[size($objects) - 1]`);
-print ($objects);
-string $name = `group ($objects)`; 
-$name = `rename $name "Ladder"`;
-
-
-}
-
-
-
+ 
